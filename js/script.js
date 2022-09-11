@@ -1,9 +1,19 @@
 
-fetch('https://api.kanye.rest/')
-    .then(data => data.json())
-    .then(quoteData => {
-        const quoteText = quoteData.quote
-        const jokeElement = document.getElementById('quote');
+const getQuotes = async () => {
+    try {
+        const res = await fetch('https://api.kanye.rest/');
+        const quoteData = await res.json();
 
-        jokeElement.innerHTML = quoteText;
-    })
+        const quotes = document.querySelector("#quote");
+
+        quotes.innerHTML = quoteData.quote
+
+    } catch (error) {}
+
+};
+
+window.addEventListener('load', () => {
+    getQuotes();
+});
+
+
